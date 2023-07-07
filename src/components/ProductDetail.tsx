@@ -283,6 +283,11 @@ const ProductDetail = ({
                                                     sx={{ display: "flex", justifyContent: "center" }}
                                                 >
                                                     <Grid item>
+                                                        <Button variant="contained" color="secondary" >
+                                                            Comprar
+                                                        </Button>
+                                                    </Grid>
+                                                    <Grid item>
                                                         <Button variant="contained" color="error" endIcon={<AddShoppingCart />}>
                                                             Adicionar ao carrinho
                                                         </Button>

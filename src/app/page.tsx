@@ -49,6 +49,30 @@ export default function Home() {
       description: "Processador. Velocidade de processador. 2.73GHz, 2.5GHz, 2GHz · Visor. Tamanho (Visor Principal). 158.3mm (6.2) · Câmera. Câmera Traseira - Resolução (Múltipla). Tamanho (Visor Principal): 158.3mm (6.2)",
       status: true,
       quantity: 12
+    },
+    {
+      id: uuid(),
+      name: "HP 15 Thin & Light Laptop ",
+      price: 28950,
+      deliver: false,
+      colors: [{ name: 'gold', code: '#3e' }, { name: 'gray', code: '#44' }, { name: 'black', code: '#t4' }],
+      image: "/img/lep.jpg",
+      rate: 4.7,
+      description: "HP 15s, 11th Gen Intel Core i3, 8GB RAM/512GB SSD 15.6-inch(39.6 cm) Micro-Edge Anti-Glare FHD Laptop/Alexa Built-in/Win 11/Intel UHD Graphics/Dual ",
+      status: true,
+      quantity: 9
+    },
+    {
+      id: uuid(),
+      name: "TP-Link TL-WA850RE Single_Band 300Mbps RJ45 Wireless Range Extender ",
+      price: 7550,
+      deliver: false,
+      colors: [{ name: 'white', code: '#3e' }, { name: 'blue', code: '#44' }, { name: 'black', code: '#t4' }],
+      image: "/img/router.jpg",
+      rate: 3.7,
+      description: "TP-LINK TL-WA850RE is designed to conveniently extend the coverage and improve the signal strength of an existing wireless network to eliminate dead",
+      status: false,
+      quantity: 9
     }
   ];
   return (
