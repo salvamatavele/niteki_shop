@@ -8,6 +8,7 @@ type coloreTypes = {
   code: string
 }
 type productTypes = {
+  id: string,
   name: string,
   price: number,
   deliver: boolean,
@@ -19,7 +20,7 @@ type productTypes = {
   quantity: number
 }
 
-const ProductCard = ({ product, onHandleClick }: { product: productTypes, onHandleClick?: (Function: any) => void }) => {
+const ProductCard = ({ product, onHandleClick, onAddClick }: { product: productTypes, onHandleClick?: (Function: any) => void, onAddClick?: (Function: any) => void }) => {
 
   return (
     <>
@@ -58,7 +59,7 @@ const ProductCard = ({ product, onHandleClick }: { product: productTypes, onHand
               </IconButton>
             </Tooltip>
             <Tooltip title="Adicionar ao carrinho">
-              <IconButton aria-label="carrinho">
+              <IconButton onClick={onAddClick} aria-label="carrinho">
                 <AddShoppingCart />
               </IconButton>
             </Tooltip>

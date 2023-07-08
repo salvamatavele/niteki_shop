@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
     AppBar,
@@ -36,12 +36,14 @@ import {
 } from "@mui/material";
 import { Add, AddShoppingCart, Close, Favorite, HorizontalRule, Share } from "@mui/icons-material";
 import { TransitionProps } from "@mui/material/transitions";
+import { CartContext } from "@/contexts/CartContext";
 
 type coloreTypes = {
     name: string;
     code: string;
 };
 type productTypes = {
+    id: string;
     name: string;
     price: number;
     deliver: boolean;
@@ -71,12 +73,18 @@ const ProductDetail = ({
     open: boolean;
     handleClose?: (Function: any) => void;
     window: number | Breakpoint;
-    product?: productTypes;
+    product: productTypes;
 }) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down("lg"));
     const [fret, setFret] = useState<number>(50);
     const [quantity, setQuantity] = useState<number>(1);
+    const {setDataToCart} = useContext(CartContext);
+
+    
+    function addToCart() {
+        setDataToCart(quantity,product);
+    }
 
     return (
         <Dialog
@@ -111,7 +119,7 @@ const ProductDetail = ({
                                         image={product?.image}
                                         alt="no image"
                                     />
-                                </CardActionArea>
+                                </CardActionArea>third
                             </Card>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
@@ -288,7 +296,7 @@ const ProductDetail = ({
                                                         </Button>
                                                     </Grid>
                                                     <Grid item>
-                                                        <Button variant="contained" color="error" endIcon={<AddShoppingCart />}>
+                                                        <Button variant="contained" onClick={addToCart} color="error" endIcon={<AddShoppingCart />}>
                                                             Adicionar ao carrinho
                                                         </Button>
                                                     </Grid>

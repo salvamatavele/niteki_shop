@@ -1,6 +1,6 @@
 
 import { AddShoppingCart } from '@mui/icons-material';
-import { AppBar, IconButton, Link, Toolbar, Typography } from '@mui/material';
+import { AppBar, IconButton, Link, Toolbar, Tooltip, Typography } from '@mui/material';
 import React from 'react';
 
 const NavBar = () => {
@@ -18,10 +18,12 @@ const NavBar = () => {
                     <Typography variant="h5" noWrap component="div" color="inherit" sx={{ flexGrow: 1 }}>
                         <Link href="/" underline="hover">Niteki Shop</Link>
                     </Typography>
+                    <Tooltip title="Meu carrinho">
+                        <IconButton href="/products/cart" color='primary'>
+                            <AddShoppingCart />
+                        </IconButton>
+                    </Tooltip>
 
-                    <IconButton href="#" color='primary'>
-                        <AddShoppingCart />
-                    </IconButton>
                 </Toolbar>
             </AppBar>
         </>

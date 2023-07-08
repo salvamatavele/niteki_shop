@@ -1,5 +1,6 @@
 "use client"
 import NavBar from '@/components/NavBar';
+import { CartProvider } from '@/contexts/CartContext';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { Inter } from 'next/font/google';
 
@@ -17,10 +18,12 @@ export default function RootLayout({
     <html lang="en">
       <head><title>Niteki Shop</title></head>
       <body className={inter.className}>
-        <ThemeProvider theme={defaultTheme}>
-          <NavBar/>
-          {children}
-        </ThemeProvider>
+        <CartProvider>
+          <ThemeProvider theme={defaultTheme}>
+            <NavBar />
+            {children}
+          </ThemeProvider>
+        </CartProvider>
       </body>
     </html>
   )

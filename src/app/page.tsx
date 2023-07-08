@@ -1,8 +1,9 @@
 "use client"
 import ProductCard from '@/components/ProductCard';
 import ProductDetail from '@/components/ProductDetail';
+import { CartContext } from '@/contexts/CartContext';
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Container, CssBaseline, Grid, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 type coloreTypes = {
@@ -23,7 +24,9 @@ type productTypes = {
 }
 export default function Home() {
   const [open, setOpen] = useState<boolean>(false)
-  const [product, setProduct] = useState<productTypes>()
+  const [productData, setProduct] = useState<productTypes>()
+  const {setDataToCart} = useContext(CartContext)
+
 
   const products: productTypes[] = [
     {
@@ -95,10 +98,10 @@ export default function Home() {
       <Container maxWidth="xl" component="main">
         <Grid container spacing={5} alignItems="flex-end">
           {products.map((product: productTypes) => (
-            <ProductCard key={product.id} product={product} onHandleClick={() => (setOpen(true), setProduct(product))} />
+            <ProductCard key={product.id} product={product} onHandleClick={() => (setOpen(true), setProduct(product))} onAddClick={()=>( setDataToCart(1,product))} />
           ))}
         </Grid>
-        <ProductDetail open={open} product={product} window='xl' handleClose={() => setOpen(false)} />
+        <ProductDetail open={open} product={productData} window='xl' handleClose={() => setOpen(false)} />
       </Container>
     </>
   )
