@@ -1,5 +1,7 @@
+"use client"
+import Flash from "@/components/Flash";
 import { setCookie } from "nookies";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 type coloreTypes = {
     name: string;
@@ -18,32 +20,40 @@ type productTypes = {
     quantity: number;
 };
 
+type productContextTypes = {
+    product: {total: number, product: productTypes}
+}
+
 type cartProviderTypes = {
-    setDataToCart: (quantity: number, product: productTypes) => Promise<void>;
+    setDataToCart: (product: productContextTypes) => Promise<void>;
 };
 
 export const CartContext = createContext({} as cartProviderTypes);
 
 export function CartProvider({ children }) {
+    const [success, setSuccess] = useState<string>()
     function setDataToCart({
-        quantity,
-        product,
+        product
     }: {
-        quantity: number;
-        product: productTypes;
+        product: productContextTypes
     }) {
+        
+        console.log(product);
+
         setCookie(
             null,
-            product.id,
-            JSON.stringify({ quantity: quantity, product: product }),
+            product.product.id,
+            JSON.stringify(product),
             {
                 maxAge: 60 * 60 * 24,
             }
         );
+        setSuccess('Produto adicionado com sucesso.')
     }
     return (
         <CartContext.Provider value={{ setDataToCart }}>
             {children}
+            <Flash success={success}/>
         </CartContext.Provider>
     );
 }

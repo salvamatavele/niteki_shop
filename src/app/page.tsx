@@ -101,7 +101,7 @@ export default function Home() {
             <ProductCard key={product.id} product={product} onHandleClick={() => (setOpen(true), setProduct(product))} onAddClick={()=>( setDataToCart(1,product))} />
           ))}
         </Grid>
-        <ProductDetail open={open} product={productData} window='xl' handleClose={() => setOpen(false)} />
+        <ProductDetail open={open} product={productData} handleClose={() => setOpen(false)} />
       </Container>
     </>
   )

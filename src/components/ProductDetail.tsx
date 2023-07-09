@@ -67,23 +67,21 @@ const Transition = React.forwardRef(function Transition(
 const ProductDetail = ({
     open,
     handleClose,
-    window,
     product,
 }: {
     open: boolean;
     handleClose?: (Function: any) => void;
-    window: number | Breakpoint;
     product: productTypes;
 }) => {
     const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down("lg"));
     const [fret, setFret] = useState<number>(50);
     const [quantity, setQuantity] = useState<number>(1);
     const {setDataToCart} = useContext(CartContext);
 
     
     function addToCart() {
-        setDataToCart(quantity,product);
+        const productFinal = {product: {total: quantity, product:product}};        
+        setDataToCart(productFinal);
     }
 
     return (
@@ -119,7 +117,7 @@ const ProductDetail = ({
                                         image={product?.image}
                                         alt="no image"
                                     />
-                                </CardActionArea>third
+                                </CardActionArea>
                             </Card>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
